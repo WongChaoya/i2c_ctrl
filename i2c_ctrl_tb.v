@@ -89,6 +89,7 @@ always @(posedge clk) begin
         end
         4: begin
             wr_req  =    1'b0;
+            #1000;
             $stop;
         end
         default: ;
@@ -113,7 +114,7 @@ end
                                           STOP           = 8'b1000_0000;
 			
 	always @(*) begin
-		case(i2c_ctrl_inst.u1.state_r)
+		case(i2c_ctrl_inst.u1.rState)
             IDLE        :     Min_State_MACHINE = "IDLE";
             WR_START    :     Min_State_MACHINE = "WR_START";
             WR_DEV_ADDR :     Min_State_MACHINE = "WR_DEV_ADDR";
